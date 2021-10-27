@@ -4,13 +4,11 @@ import '../index.css';
 
 function Header() {
     return (
-        <div className="page">
         <div className="page__container">
             <div className="header">
                 <img className="header__logo" src={logo} alt="логотип Mesto"/>
             </div>
         </div>
-        </div>  
     );
 }
 

@@ -2,7 +2,7 @@ import '../index.css';
 
 function PopupAddPlaceComponent() {
     return (
-        <div>
+        <>
         <div className="popup__label">
             <input readOnly required minLength="1" maxLength="30" type="text"
                 name ="name" value="" placeholder = "Название"
@@ -17,7 +17,7 @@ function PopupAddPlaceComponent() {
             </input>
             <span className="popup__input-error"></span>
         </div>
-        </div>
+        </>
     );
 }
 

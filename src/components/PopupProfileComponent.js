@@ -2,7 +2,7 @@ import '../index.css';
 
 function PopupProfileComponent() {
     return (
-        <div>
+        <>
         <div className="popup__label">
             <input readOnly required minLength="2" maxLength="40" type="text"
                 name ="name" value="" className="popup__input popup__input_text_name">
@@ -15,7 +15,7 @@ function PopupProfileComponent() {
             </input>
             <span className="popup__input-error"></span>
         </div>
-        </div>
+        </>
     );
 }
 

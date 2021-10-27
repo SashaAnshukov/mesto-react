@@ -4,8 +4,7 @@ import Card from './Card';
 
 import {useState, useEffect} from 'react';
 
-function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick,
-    userName, userDescription, userAvatar, onCardClick}) {
+function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClick, onCardClick}) {
 
     /*function handleEditAvatarClick() {
         document.querySelector('.popup_type_change-avatar').classList.add('popup_visible')
@@ -17,7 +16,20 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
         document.querySelector('.popup_type_add-card').classList.add('popup_visible')
     }*/
 
-    
+    const [userName, setUserName] = useState('');
+    const [userDescription, setUserDescription] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
+
+    useEffect(() => {
+        api.getUserData().then(res => {
+            setUserName(res.name);
+            setUserDescription(res.about);
+            setUserAvatar(res.avatar);
+        })
+        .catch(err => {
+            console.log ('Ошибка: ${err}')
+        })
+    }, [])
 
     const [cards, setCards] = useState([]);
     
@@ -33,10 +45,14 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
             })
             setCards(arr);
         })
+        .catch(err => {
+            console.log ('Ошибка: ${err}')
+        })
     }, [])
 
     return (
         <main>
+            <div className="page__container">
             <section className="profile">
                 <div className="profile__space">
                     <div className = "profile__holder">
@@ -54,13 +70,15 @@ function Main({handleEditAvatarClick, handleEditProfileClick, handleAddPlaceClic
                 <button type ="button" aria-label="add" onClick={handleAddPlaceClick}
                 className="profile__add-button opacity-buttons"></button>
             </section>
+            
+            
 
             <section className="elements">
                 {cards.map (card => {
                     return <Card onCardClick = {onCardClick} card={card} key = {card.id}/>
                 })}
             </section>
-
+            </div>
         </main>
     );
 }

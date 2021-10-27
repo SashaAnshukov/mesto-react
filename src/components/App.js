@@ -28,19 +28,7 @@ function App() {
     setSelectedCard ({name:'', src:''})
   };
 
-  const [isUserName, setIsUserName] = useState('');
-  const [isUserDescription, setIsUserDescription] = useState('');
-  const [isUserAvatar, setIsUserAvatar] = useState('');
-
-  useEffect(() => {
-    api.getUserData().then(res => {
-      setIsUserName(res.name);
-      setIsUserDescription(res.about);
-      setIsUserAvatar(res.avatar);
-    }).catch(err => {
-      console.log ('Ошибка: ${err}')
-    })
-  }, [])
+  
 
   const [selectedCard, setSelectedCard] = useState({name:'', src:''});
   const [isPicturePopupOpen, setIsPicturePopupOpen] = useState(false);
@@ -52,26 +40,25 @@ function App() {
       <Header />
       <Main 
         handleEditAvatarClick = {onEditAvatar} handleEditProfileClick = {onEditProfile}
-        handleAddPlaceClick = {onAddPlace} userName ={isUserName} userDescription = {isUserDescription}
-        userAvatar = {isUserAvatar} onCardClick ={handleCardClick}
+        handleAddPlaceClick = {onAddPlace} onCardClick ={handleCardClick}
       />
       <Footer />
 
       <PopupWithForm 
         name = {'change-avatar'} title = {'Обновить аватар'} isOpen = {isEditAvatarPopupOpen}
-        onClose = {closeAllPopups}>
+        onClose = {closeAllPopups} buttonText = {'Сохранить'}>
         <PopupAvatarComponent />
       </PopupWithForm>
 
       <PopupWithForm 
         name = {'edit'} title = {'Редактировать профиль'} isOpen = {isEditProfilePopupOpen}
-        onClose = {closeAllPopups}>
+        onClose = {closeAllPopups} buttonText = {'Сохранить'}>
         <PopupProfileComponent />
       </PopupWithForm>
 
       <PopupWithForm 
         name = {'add-card'} title = {'Новое место'} isOpen = {isAddPlacePopupOpen}
-        onClose = {closeAllPopups}>
+        onClose = {closeAllPopups} buttonText = {'Сохранить'}>
         <PopupAddPlaceComponent />
       </PopupWithForm>
 
