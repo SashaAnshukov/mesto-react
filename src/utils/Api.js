@@ -86,7 +86,7 @@ export class Api {
         .then(this._checkResponse)
     }
 
-    //8. лайки.постановка
+    /*//8. лайки.постановка
     setLikeCard(id) {
         return fetch(`${this._adress}/cards/likes/${id}`, {
             method: 'PUT',
@@ -102,6 +102,18 @@ export class Api {
     deleteLikeCard(id) {
         return fetch(`${this._adress}/cards/likes/${id}`, {
             method: 'DELETE',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json' 
+            },
+        })
+        .then(this._checkResponse)
+    }*/
+
+    //8. лайки.постановка/удаление
+    сhangeLikeCard(id, like) {
+        return fetch(`${this._adress}/cards/likes/${id}`, {
+            method: like ? 'DELETE' : 'PUT',
             headers: {
                 authorization: this._token,
                 'Content-Type': 'application/json' 

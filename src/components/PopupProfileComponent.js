@@ -1,4 +1,4 @@
-import '../index.css';
+/*import '../index.css';
 
 function PopupProfileComponent() {
     return (
@@ -19,4 +19,4 @@ function PopupProfileComponent() {
     );
 }
 
-export default PopupProfileComponent;
+export default PopupProfileComponent;*/
