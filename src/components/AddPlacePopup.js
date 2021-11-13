@@ -1,8 +1,8 @@
 import PopupWithForm from './PopupWithForm';
-import {useState,} from 'react';
+import {useState, useEffect} from 'react';
 
 
-function AddPlacePopup({isOpen, onClose, onAddPlace}) {
+function AddPlacePopup({isOpen, onClose, onAddPlace, buttonText}) {
     // Стейт, в котором содержится значение инпута - name, link
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
@@ -25,15 +25,23 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
         dataCard.name = name;
         dataCard.link = link;
         onAddPlace(dataCard);
-        setName('')
-        setLink('')
     }
+
+    //очищаем инпуты при каждом открытии модального окна
+    useEffect(() => {
+        if (isOpen) {
+            setName('');
+            setLink('')
+        }
+    }, [isOpen])
+
+
 
     return (
         <PopupWithForm 
             name = {'add-card'} title = {'Новое место'}
             isOpen = {isOpen} onClose = {onClose}
-            buttonText = {'Сохранить'} onSubmit={handleSubmit}
+            buttonText = {buttonText} onSubmit={handleSubmit}
         >
             <div className="popup__label">
             <input

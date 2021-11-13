@@ -1,6 +1,6 @@
 .profile__avatar-button {
     margin: 0;
-    padding: 0;
+    padding: 60px;
     width: 26px;
     height: 26px;
     opacity: 0;
@@ -10,6 +10,7 @@
     transform: translate(-50%, -50%);
     border: none;
     cursor: pointer;
+    /*border-radius: 30px;*/
 }
 
 .profile__avatar-button:hover {

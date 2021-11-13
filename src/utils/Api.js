@@ -44,7 +44,7 @@ export class Api {
     }
 
     setUserAvatar({avatar}) {
-        console.log('!!!', avatar);
+        //console.log('!!!', avatar);
         return fetch(`${this._adress}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
@@ -58,7 +58,7 @@ export class Api {
         .then(this._checkResponse)
     }
 
-    //4. добавление новой карточки
+    // добавление новой карточки
     setMyCard(data) {
         return fetch(`${this._adress}/cards`, {
             method: 'POST',
@@ -74,7 +74,7 @@ export class Api {
         .then(this._checkResponse)
     }
 
-    //7. удаление карточки 
+    // удаление карточки 
     deleteCard(id) {
         return fetch(`${this._adress}/cards/${id}`, {
             method: 'DELETE',
@@ -86,31 +86,7 @@ export class Api {
         .then(this._checkResponse)
     }
 
-    /*//8. лайки.постановка
-    setLikeCard(id) {
-        return fetch(`${this._adress}/cards/likes/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json' 
-            },
-        })
-        .then(this._checkResponse)
-    }
-
-    //8. лайки.удаление
-    deleteLikeCard(id) {
-        return fetch(`${this._adress}/cards/likes/${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this._token,
-                'Content-Type': 'application/json' 
-            },
-        })
-        .then(this._checkResponse)
-    }*/
-
-    //8. лайки.постановка/удаление
+    // лайки.постановка/удаление
     сhangeLikeCard(id, like) {
         return fetch(`${this._adress}/cards/likes/${id}`, {
             method: like ? 'DELETE' : 'PUT',

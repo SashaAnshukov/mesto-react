@@ -1,6 +1,4 @@
 import logo from '../images/logo.svg';
-import '../index.css';
-
 
 function Header() {
     return (

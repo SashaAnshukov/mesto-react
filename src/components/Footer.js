@@ -1,5 +1,3 @@
-import '../index.css';
-
 function Footer() {
     return (
         <div className="page__container">

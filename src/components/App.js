@@ -1,4 +1,3 @@
-import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -12,14 +11,15 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const onEditAvatar = () => {setIsEditAvatarPopupOpen(true)};
+  const handleEditAvatarClick = () => {setIsEditAvatarPopupOpen(true)};
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const onEditProfile = () => {setIsEditProfilePopupOpen(true)};
+  const handleEditProfileClick = () => {setIsEditProfilePopupOpen(true)};
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  console.log(isAddPlacePopupOpen)
-  const onAddPlace = () => {setIsAddPlacePopupOpen(true)};
+  const handleAddPlaceClick = () => {setIsAddPlacePopupOpen(true)};
+
+  const [isLoadingButton, setisLoadingButton] = useState(false);
   
   const closeAllPopups = (form) => {
     setIsEditAvatarPopupOpen(false);
@@ -40,7 +40,7 @@ function App() {
         setCurrentUser(res);
     })
     .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
     })
   }, [])
 
@@ -50,7 +50,7 @@ function App() {
       setCards(res);
     })
     .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
     })
   }, [])
 
@@ -63,20 +63,8 @@ function App() {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
     .catch(err => {
-      console.log ('Ошибка: ${err}')
+      console.log (`Ошибка: ${err}`)
     })
-    /*const isLiked = card.likes.some(i => i._id === currentUser._id);
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    if (isLiked) {
-      api.deleteLikeCard(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
-    }
-    else {
-      api.setLikeCard(card._id, !isLiked).then((newCard) => {
-          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      });
-    }*/
 }
 
 function handleCardDelete (card) {
@@ -86,43 +74,49 @@ function handleCardDelete (card) {
         setCards((cards) => cards.filter((i) => i._id !== card._id));
       })
       .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
       })
 } 
 
 function handleUpdateUser (dataUser) {
   // Отправляем запрос в API и обновляем значения профиля
   //console.log(data)
+  setisLoadingButton(true)
   api.setUserData(dataUser).then((res) => {
       setCurrentUser(res);
       closeAllPopups()
+      setisLoadingButton(false)
     })
     .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
     })
 }
 
 function handleUpdateAvatar (dataAvatar) {
+  setisLoadingButton(true)
   // Отправляем запрос в API и обновляем аватар
   //console.log(data)
   api.setUserAvatar(dataAvatar).then((res) => {
       setCurrentUser(res);
       closeAllPopups()
+      setisLoadingButton(false)
     })
     .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
     })
 }
 
 function handleAddPlaceSubmit (newCard) {
+  setisLoadingButton(true)
   // Отправляем запрос в API и обновляем аватар
   //console.log(data)
   api.setMyCard(newCard).then((newCard) => {
-    setCards([newCard, ...cards]);
+      setCards([newCard, ...cards]);
       closeAllPopups()
+      setisLoadingButton(false);
     })
     .catch(err => {
-        console.log ('Ошибка: ${err}')
+        console.log (`Ошибка: ${err}`)
     })
 }
 
@@ -132,20 +126,20 @@ function handleAddPlaceSubmit (newCard) {
       <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main 
-        handleEditAvatarClick = {onEditAvatar} handleEditProfileClick = {onEditProfile}
-        handleAddPlaceClick = {onAddPlace} onCardClick ={handleCardClick}
+        handleEditAvatarClick = {handleEditAvatarClick} handleEditProfileClick = {handleEditProfileClick}
+        handleAddPlaceClick = {handleAddPlaceClick} onCardClick ={handleCardClick}
         onCardLike = {handleCardLike} onCardDelete ={handleCardDelete} cards={cards} 
       />
       <Footer />
 
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
-        onUpdateAvatar = {handleUpdateAvatar}
+        onUpdateAvatar = {handleUpdateAvatar} buttonText = {isLoadingButton ? 'Сохранение...' : 'Сохранить'}
       />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
-        onUpdateUser = {handleUpdateUser}
+        onUpdateUser = {handleUpdateUser} buttonText = {isLoadingButton ? 'Сохранение...' : 'Сохранить'}
       />
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
-        onAddPlace = {handleAddPlaceSubmit}
+        onAddPlace = {handleAddPlaceSubmit} buttonText = {isLoadingButton ? 'Сохранение...' : 'Сохранить'}
       />
       <ImagePopup 
         card = {selectedCard} isOpen = {isPicturePopupOpen} onClose = {closeAllPopups} >

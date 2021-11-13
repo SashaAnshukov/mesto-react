@@ -2,7 +2,7 @@ import PopupWithForm from './PopupWithForm';
 import {useContext, useEffect, useState} from 'react';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+function EditProfilePopup({isOpen, onClose, onUpdateUser, buttonText}) {
     // Подписка на контекст
     const currentUser = useContext(CurrentUserContext);
     // Стейт, в котором содержится значение инпута - name, description
@@ -40,7 +40,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
         <PopupWithForm 
             name = {'edit'} title = {'Редактировать профиль'}
             isOpen = {isOpen} onClose = {onClose}
-            buttonText = {'Сохранить'} onSubmit={handleSubmit}
+            buttonText = {buttonText} onSubmit={handleSubmit}
         >
             <div className="popup__label">
                 <input

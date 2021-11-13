@@ -1,4 +1,3 @@
-import '../index.css';
 import Card from './Card';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import {useContext} from 'react';
@@ -16,9 +15,12 @@ function Main(
                 <section className="profile">
                     <div className="profile__space">
                         <div className = "profile__holder">
-                            <img className="profile__avatar" src={currentUser.avatar} alt="Аватар пользователя"/>
-                            <button type ="button" aria-label="edit" onClick={handleEditAvatarClick} 
-                            className="profile__avatar-button"></button>
+                            <div className = "profile__round">
+                                <img className="profile__avatar" src={currentUser.avatar} alt="Аватар пользователя"/>
+                                <button type ="button" aria-label="edit" onClick={handleEditAvatarClick} 
+                                    className="profile__avatar-button">
+                                </button>
+                            </div> 
                         </div>    
                             <div className="profile__info">
                             <h1 className="profile__title">{currentUser.name}</h1>

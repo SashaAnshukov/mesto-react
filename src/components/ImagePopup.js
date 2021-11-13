@@ -1,5 +1,3 @@
-import '../index.css';
-
 function ImagePopup({card, isOpen, onClose}) {
     return (
         //<div className={`popup ${card.src && "popup_visible"} popup popup_type_image`}>

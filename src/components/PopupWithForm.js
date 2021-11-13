@@ -1,5 +1,3 @@
-import '../index.css';
-
 function PopupWithForm({name, title, isOpen, onClose, children, buttonText, onSubmit}) {
     
     return (
