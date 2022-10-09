@@ -1,6 +1,6 @@
 ## 📖 Описание: 
-сервис "Mesto" -<br />
-  интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки. Выполнен рефакторинг Была cоздана в рамках 10-ой и 11-ой проектных работ на платформе
+сервис "Mesto React app" -<br />
+  интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки. [Проект Mesto](https://github.com/SashaAnshukov/mesto) был портирован на React в рамках 10-ой и 11-ой проектных работ на платформе
   [Яндекс.Практикум](https://praktikum.yandex.ru/web/)
 
 [Проектная работа на GitHub Pages](https://sashaanshukov.github.io/mesto/) 
@@ -18,6 +18,7 @@
 * ![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
 * ![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
 * ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
+* ![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)&nbsp;
 * ![Figma](https://img.shields.io/badge/-Figma-05122A?style=flat&logo=figma)&nbsp;
 * ![Webpack](https://img.shields.io/badge/-Webpack-05122A?style=flat&logo=webpack)&nbsp;
 * ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)&nbsp;
@@ -26,24 +27,23 @@
 ## 🚀 Инструкция по развёртыванию:
 * Клонируйте репозиторий на свой компьютер через командную строку.
 ```
-git clone https://github.com/SashaAnshukov/russian-travel3.git
+git clone [https://github.com/SashaAnshukov/russian-travel3.git](https://github.com/SashaAnshukov/mesto-react.git)
 ```
 * Перейдите в локальную папку с проектом
-* Скомпилируйте файл для запуска приложения
+* Уствновите зависимости
 ```
-npm i webpack --save-dev
+npm i
 ```
-* Собеоите сборку командой
+* Запустите сборку командой
 ```
-npm run build
+npm start
 ```
-Запустите сборку командой
-```
-npm run dev
-```
+* Откройте [http://localhost:3000](http://localhost:3000) в окне браузера.
 
 ## 🤖 Будущая доработка проекта будет включать в себя: 
-* Смену языка страницы
+* Добавить валидацию форм
+
+
 
 <!--# Getting Started with Create React App
 
